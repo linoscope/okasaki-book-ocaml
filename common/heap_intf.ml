@@ -7,7 +7,7 @@ module type S = sig
   val empty : t
   val is_empty : t -> bool
 
-  val insert : t -> Elm.t -> t
+  val insert : t -> value:Elm.t -> t
   val merge : t -> t -> t
 
   val find_min : t -> Elm.t

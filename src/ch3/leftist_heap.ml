@@ -1,7 +1,7 @@
 open Okasaki_common
 open Base
 
-module Leftist_heap (Element : Ordered_intf.S) = struct
+module Make (Element : Ordered_intf.S) = struct
   exception Empty
 
   module Elm = Element
@@ -34,7 +34,7 @@ module Leftist_heap (Element : Ordered_intf.S) = struct
       |  1 -> make_t (v2, l2, merge t1 r2)
       |  _ -> assert false
 
-  let insert t v = merge t (T (0, v, E, E))
+  let insert t ~value = merge t (T (0, value, E, E))
 
   let find_min = function
     | E -> raise Empty
