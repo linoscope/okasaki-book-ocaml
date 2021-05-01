@@ -2,7 +2,7 @@ open Base
 open Stdio
 open Ch2
 
-module M = Set.Make(Int)
+module M = Unbalanced_set.Make(Int)
 
 let create_test_set () =
   let open M in

@@ -1,20 +1,6 @@
-module type OrderedType = sig
-  type t
+open Common
 
-  val compare : t -> t -> int
-end
-
-module type S = sig
-  type elt
-  type t
-
-  val empty : t
-  val insert : t -> value:elt -> t
-  val member : t -> value:elt -> bool
-  val complete : value:elt -> depth:int -> t
-end
-
-module Make (Element : OrderedType) = struct
+module Make (Element : Ordered_intf.S) = struct
   type elt = Element.t
   type t = E | T of t * elt * t
 
