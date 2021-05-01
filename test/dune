@@ -1,0 +1,8 @@
+(library
+ (name okasaki_test)
+ (libraries okasaki_src)
+ (inline_tests)
+ (preprocess (pps ppx_jane))
+)
+
+(include_subdirs unqualified)

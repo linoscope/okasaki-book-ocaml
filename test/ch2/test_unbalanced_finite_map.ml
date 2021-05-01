@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Ch2
+open Okasaki_src
 
 module M = Unbalanced_finite_map.Make(Int)
 

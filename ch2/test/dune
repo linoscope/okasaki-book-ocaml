@@ -1,6 +1,0 @@
-(library
- (name ch2_test)
- (libraries ch2)
- (inline_tests)
- (preprocess (pps ppx_jane))
-)
