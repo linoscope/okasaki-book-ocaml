@@ -1,4 +1,4 @@
-open Common
+open Okasaki_common
 
 module Make (Element : Ordered_intf.S) = struct
   type elt = Element.t

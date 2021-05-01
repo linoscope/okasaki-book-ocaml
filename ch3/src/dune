@@ -1,4 +1,4 @@
 (library
- (name ch2)
+ (name ch3)
  (libraries okasaki_common base stdio)
  (preprocess (pps ppx_jane)))

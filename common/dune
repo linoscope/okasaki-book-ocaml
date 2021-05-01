@@ -1,5 +1,5 @@
 (library
- (name common)
+ (name okasaki_common)
  (libraries base)
  (preprocess (pps ppx_jane))
 )
