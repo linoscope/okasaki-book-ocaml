@@ -5,6 +5,7 @@ module Make (Element : Ordered_intf.S) = struct
   exception Empty
 
   module Elm = Element
+
   type t = E | T of int * Elm.t * t  * t
 
   let empty = E
