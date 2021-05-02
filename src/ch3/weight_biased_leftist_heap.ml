@@ -5,44 +5,36 @@ module Make (Element : Ordered_intf.S) = struct
   exception Empty
 
   module Elm = Element
-  type t = E | T of int * Elm.t * t  * t
+
+  type t = E | T of int * Elm.t * t * t
 
   let empty = E
 
   let is_empty = function
-    | E -> true
+    | E   -> true
     | T _ -> false
 
-  let rank = function
+  let weight = function
     | E -> 0
-    | T (k, _, _, _) -> k
+    | T (w, _, _, _) -> w
 
-  let make_t (v, l, r) =
-    if rank l >= rank r then
-      T (rank r + 1, v, l, r)
+  let make_t w v l r =
+    if weight l <= weight r then
+      T (w, v, r, l)
     else
-      T (rank l + 1, v, r, l)
+      T (w, v, l, r)
 
   let rec merge t1 t2 =
     match t1, t2 with
-    | E, t2 -> t2
-    | t1, E -> t1
-    | T (_, v1, l1, r1), T (_, v2, l2, r2) ->
+    | E, _ -> t2
+    | _, E -> t1
+    | T (w1, v1, l1, r1), T (w2, v2, l2, r2) ->
       if Elm.(v1 <= v2) then
-        make_t (v1, l1, merge r1 t2)
+        make_t (w1 + w2) v1 l1 (merge r1 t2)
       else
-        make_t (v2, l2, merge t1 r2)
+        make_t (w1 + w2) v2 l2 (merge r2 t1)
 
-  (* let insert t ~value = merge t (T (0, value, E, E)) *)
-
-  let rec insert t ~value =
-    match t with
-    | E -> T (1, value, E, E)
-    | T (_, v, l, r) ->
-      if Elm.(value <= v) then
-        T (1, value, t, E)
-      else
-        make_t (v, l, insert r ~value)
+  let insert t ~value = merge t (T (1, value, E, E))
 
   let find_min = function
     | E -> raise Empty
@@ -50,7 +42,7 @@ module Make (Element : Ordered_intf.S) = struct
 
   let delete_min = function
     | E -> raise Empty
-    | T (_, _, l, r) -> merge l r
+    | T (_, _, r, l) -> merge l r
 
   let of_list l =
     let elm_to_node v = T (1, v, E, E) in
