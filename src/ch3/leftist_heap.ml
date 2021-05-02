@@ -19,22 +19,30 @@ module Make (Element : Ordered_intf.S) = struct
 
   let make_t (v, l, r) =
     if rank l >= rank r then
-      T (rank r, v, l, r)
+      T (rank r + 1, v, l, r)
     else
-      T (rank l, v, r, l)
+      T (rank l + 1, v, r, l)
 
   let rec merge t1 t2 =
     match t1, t2 with
     | E, t2 -> t2
     | t1, E -> t1
     | T (_, v1, l1, r1), T (_, v2, l2, r2) ->
-      match Elm.compare v1 v2 with
-      | -1
-      |  0 -> make_t (v1, l1, merge r1 t2)
-      |  1 -> make_t (v2, l2, merge t1 r2)
-      |  _ -> assert false
+      if Elm.(v1 <= v2) then
+        make_t (v1, l1, merge r1 t2)
+      else
+        make_t (v2, l2, merge t1 r2)
 
-  let insert t ~value = merge t (T (0, value, E, E))
+  (* let insert t ~value = merge t (T (0, value, E, E)) *)
+
+  let rec insert t ~value =
+    match t with
+    | E -> T (0, value, E, E)
+    | T (_, v, l, r) ->
+      if Elm.(value <= v) then
+        T (0, value, t, E)
+      else
+        make_t (v, l, insert r ~value)
 
   let find_min = function
     | E -> raise Empty
