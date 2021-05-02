@@ -1,6 +1,6 @@
 (library
  (name okasaki_src)
- (libraries okasaki_common base stdio)
+ (libraries base stdio)
  (preprocess (pps ppx_jane)) 
 )
 

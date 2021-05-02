@@ -1,6 +1,5 @@
 open Core_bench
 open Okasaki_src
-open Okasaki_common
 open Base
 
 let display_config = Bench.Display_config.create ~show_percentage:true ()

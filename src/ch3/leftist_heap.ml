@@ -1,4 +1,3 @@
-open Okasaki_common
 open Base
 
 module Make (Element : Ordered_intf.S) = struct

@@ -1,5 +1,3 @@
-open Okasaki_common
-
 module Make (Key : Ordered_intf.S) = struct
   type key = Key.t
   type 'a t = E | T of 'a t * key * 'a * 'a t
