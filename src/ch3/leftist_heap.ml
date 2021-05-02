@@ -51,4 +51,18 @@ module Make (Element : Ordered_intf.S) = struct
   let delete_min = function
     | E -> raise Empty
     | T (_, _, l, r) -> merge l r
+
+  let of_list l =
+    let elm_to_node v = T (0, v, E, E) in
+    let rec merge_nodes (ns : t list) (acc : t list) : t =
+      match ns, acc with
+      | [], [] -> E
+      | [], [x] -> x
+      | [], acc -> merge_nodes acc []
+      | [x], acc -> merge_nodes [] (x::acc)
+      | x::y::xs, acc -> merge_nodes xs ((merge x y)::acc)
+    in
+    l
+    |> List.map ~f:elm_to_node
+    |> (fun ns -> merge_nodes ns [])
 end
