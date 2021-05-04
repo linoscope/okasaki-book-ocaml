@@ -12,6 +12,4 @@ module type S = sig
 
   val find_min : t -> Elm.t
   val delete_min : t -> t
-
-  val of_list : Elm.t list -> t
 end
