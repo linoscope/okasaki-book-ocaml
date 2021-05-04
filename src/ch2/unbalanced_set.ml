@@ -1,6 +1,6 @@
 module Make (Element : Ordered_intf.S) = struct
-  type elt = Element.t
-  type t = E | T of t * elt * t
+  type elm = Element.t
+  type t = E | T of t * elm * t
 
   let empty = E
 

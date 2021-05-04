@@ -1,9 +1,8 @@
 module type S = sig
-  type elt
+  type elm
   type t
 
   val empty : t
-  val insert : t -> value:elt -> t
-  val member : t -> value:elt -> bool
-  val complete : value:elt -> depth:int -> t
+  val insert : t -> value:elm -> t
+  val member : t -> value:elm -> bool
 end
