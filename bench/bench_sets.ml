@@ -4,9 +4,10 @@ open Base
 
 module US = Unbalanced_set.Make(Int)
 module RBS = Red_black_set.Make(Int)
+module RBS_2 = Red_black_set_2.Make(Int)
 
 (* let nums = List.init 1_000_000 ~f:(fun _ -> Random.int Int.max_value) *)
-let nums = List.init 10_000 ~f:(fun n -> n)
+let nums = List.init 10_000 ~f:(fun n -> n) |> List.rev
 
 let () =
   let f (module S : Set_intf.S with type elm = Int.t) (l : int list) =
@@ -14,7 +15,8 @@ let () =
     l |> List.iter ~f:(fun n -> ignore @@ S.member h ~value:n)
   in
   [
-    Bench.Test.create ~name:"Unbalanced set" (fun () -> f (module US) nums);
+    (* Bench.Test.create ~name:"Unbalanced set" (fun () -> f (module US) nums); *)
     Bench.Test.create ~name:"Red black set" (fun () -> f (module RBS) nums);
+    Bench.Test.create ~name:"Red black set 2" (fun () -> f (module RBS_2) nums);
   ]
   |> Bench.bench ~display_config:(Bench.Display_config.create ~show_percentage:true ())
