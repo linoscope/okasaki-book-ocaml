@@ -1,3 +1,9 @@
 (executable
  (name bench_heaps)
+ (modules bench_heaps)
+ (libraries okasaki_src core_bench base))
+
+(executable
+ (name bench_sets)
+ (modules bench_sets)
  (libraries okasaki_src core_bench base))
