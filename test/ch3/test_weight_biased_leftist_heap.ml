@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Okasaki_src
+open Okasaki_book
 
 module H = Weight_biased_leftist_heap.Make(Int)
 

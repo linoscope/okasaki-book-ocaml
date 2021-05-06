@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Okasaki_src
+open Okasaki_book
 
 let s = Custom_stack.(cons 1 (cons 2 (cons 3 empty)))
 

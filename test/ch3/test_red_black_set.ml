@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Okasaki_src
+open Okasaki_book
 
 module M = Red_black_set.Make(Int)
 

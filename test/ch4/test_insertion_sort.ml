@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Okasaki_src
+open Okasaki_book
 
 let print_stream s =
   s

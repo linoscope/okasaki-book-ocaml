@@ -1,5 +1,5 @@
 open Core_bench
-open Okasaki_src
+open Okasaki_book
 open Base
 
 module LH = Leftist_heap.Make(Int)

@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Okasaki_src
+open Okasaki_book
 
 let rec from n = lazy (Stream.Cons (n, from (n + 1)))
 let nats = from 0

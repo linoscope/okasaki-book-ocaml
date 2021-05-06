@@ -1,5 +1,5 @@
 open Core_bench
-open Okasaki_src
+open Okasaki_book
 open Base
 
 module BQ = Batched_queue
