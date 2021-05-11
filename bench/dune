@@ -1,14 +1,3 @@
-(executable
- (name bench_heaps)
- (modules bench_heaps)
- (libraries okasaki_book core_bench base))
-
-(executable
- (name bench_sets)
- (modules bench_sets)
- (libraries okasaki_book core_bench base))
-
-(executable
- (name bench_queues)
- (modules bench_queues)
+(executables
+ (names bench_heaps bench_sets bench_queues)
  (libraries okasaki_book core_bench base))
